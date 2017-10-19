@@ -57,7 +57,7 @@ namespace Bonsai.Miniscope
                     {
                         using (var capture = Capture.CreateCameraCapture(Index))
                         {
-                            //capture.SetProperty(CaptureProperty.Saturation, (double)FramesPerSecond);
+                            capture.SetProperty(CaptureProperty.Saturation, (double)FramesPerSecond);
 
                             while (!cancellationToken.IsCancellationRequested)
                             {
