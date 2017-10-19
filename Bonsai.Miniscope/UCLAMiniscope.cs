@@ -24,11 +24,10 @@ namespace Bonsai.Miniscope
         [Description("Relative exposure time.")]
         public double Exposure { get; set; } = 255;
 
-        [Range(16, 64)]
-        [Precision(0, 2)]
+        [Range(0, 7)]
         [Editor(DesignTypes.SliderEditor, typeof(UITypeEditor))]
         [Description("The sensor gain.")]
-        public double SensorGain { get; set; } = 16;
+        public double SensorGain { get; set; } = 0;
 
         public enum FPS
         {
@@ -58,7 +57,7 @@ namespace Bonsai.Miniscope
                     {
                         using (var capture = Capture.CreateCameraCapture(Index))
                         {
-                            capture.SetProperty(CaptureProperty.Saturation, (double)FramesPerSecond);
+                            //capture.SetProperty(CaptureProperty.Saturation, (double)FramesPerSecond);
 
                             while (!cancellationToken.IsCancellationRequested)
                             {
