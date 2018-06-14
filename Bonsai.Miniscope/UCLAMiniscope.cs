@@ -29,6 +29,10 @@ namespace Bonsai.Miniscope
         [Description("The sensor gain.")]
         public double SensorGain { get; set; } = 0;
 
+        private double lastSensorGain = 0;
+        private double lastExposure = 255;
+        private double lastLEDBrightness = 0;
+
         public enum FPS
         {
             FPS5 = 0x11,
@@ -58,23 +62,34 @@ namespace Bonsai.Miniscope
                     {
                         using (var capture = Capture.CreateCameraCapture(Index))
                         {
-                            //foreach (var setting in captureProperties)
-                            //{
-                             //   capture.SetProperty(setting.Property, setting.Value);
-                            //}
-                            //captureProperties.Capture = capture;
-
-                            capture.SetProperty(CaptureProperty.Saturation, (double)FramesPerSecond);
                             try
                             {
+                                capture.SetProperty(CaptureProperty.Saturation, (double)FramesPerSecond);
+
+                                capture.SetProperty(CaptureProperty.Hue, LEDBrightness);
+                                capture.SetProperty(CaptureProperty.Gain, SensorGain);
+                                capture.SetProperty(CaptureProperty.Brightness, Exposure);
                                 while (!cancellationToken.IsCancellationRequested)
                                 {
                                     // Runtime settable properties
-                                    capture.SetProperty(CaptureProperty.Hue, LEDBrightness);
-                                    capture.SetProperty(CaptureProperty.Gain, SensorGain);
-                                    capture.SetProperty(CaptureProperty.Brightness, Exposure);
+                                    if (LEDBrightness != lastLEDBrightness)
+                                    {
+                                        capture.SetProperty(CaptureProperty.Hue, LEDBrightness);
+                                        lastLEDBrightness = LEDBrightness;
+                                    }
+                                    if (SensorGain != lastSensorGain)
+                                    {
+                                        capture.SetProperty(CaptureProperty.Gain, SensorGain);
+                                        lastSensorGain = SensorGain;
+                                    }
+                                    if (Exposure != lastExposure)
+                                    {
+                                        capture.SetProperty(CaptureProperty.Brightness, Exposure);
+                                        lastExposure = Exposure;
+                                    }
 
                                     var image = capture.QueryFrame();
+
                                     if (image == null)
                                     {
                                         observer.OnCompleted();
