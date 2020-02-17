@@ -6,6 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+Bonsai.Miniscope/Bonsai.Miniscope.csproj
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
