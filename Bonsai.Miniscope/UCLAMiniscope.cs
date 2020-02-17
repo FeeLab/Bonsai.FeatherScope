@@ -68,6 +68,7 @@ namespace Bonsai.Miniscope
                         {
                             try
                             {
+                                capture.SetProperty(CaptureProperty.ConvertRgb, 0);
                                 capture.SetProperty(CaptureProperty.Saturation, (double)FramesPerSecond);
 
                                 capture.SetProperty(CaptureProperty.Hue, LEDBrightness);
