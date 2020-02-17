@@ -6,8 +6,8 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://github.com/jonnew/Bonsai.Miniscope/blob/master/README.md</licenseUrl>
-    <projectUrl>https://github.com/jonnew/Bonsai.Miniscope</projectUrl>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/galenlynch/Bonsai.Miniscope</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Jon Newman © 2017</copyright>
