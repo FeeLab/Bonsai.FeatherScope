@@ -14,37 +14,18 @@ namespace Bonsai.Miniscope
         [Description("The index of the camera from which to acquire images.")]
         public int Index { get; set; } = 0;
 
-        [Range(0, 255)]
-        [Editor(DesignTypes.SliderEditor, typeof(UITypeEditor))]
-        [Description("LED Brightness.")]
-        public double LEDBrightness { get; set; } = 0;
-
         [Range(1, 255)]
         [Editor(DesignTypes.SliderEditor, typeof(UITypeEditor))]
         [Description("Relative exposure time.")]
         public double Exposure { get; set; } = 255;
 
-        [Range(0, 7)]
+        [Range(1, 2)]
         [Editor(DesignTypes.SliderEditor, typeof(UITypeEditor))]
         [Description("The sensor gain.")]
-        public double SensorGain { get; set; } = 0;
+        public double SensorGain { get; set; } = 2;
 
-        private double lastLEDBrightness;
         private double lastExposure;
         private double lastSensorGain;
-
-        public enum FPS
-        {
-            FPS5 = 0x11,
-            FPS10 = 0x12,
-            FPS15 = 0x13,
-            FPS20 = 0x14,
-            FPS30 = 0x15,
-            FPS60 = 0x16
-        };
-
-        [Description("Frames per second.")]
-        public FPS FramesPerSecond { get; set; } = FPS.FPS30;
 
         // State
         IObservable<IplImage> source;
@@ -54,7 +35,6 @@ namespace Bonsai.Miniscope
         // Functor
         public UCLAMiniscope()
         {
-            lastLEDBrightness = LEDBrightness;
             lastExposure = Exposure;
             lastSensorGain = SensorGain;
 
@@ -69,19 +49,12 @@ namespace Bonsai.Miniscope
                             try
                             {
                                 capture.SetProperty(CaptureProperty.ConvertRgb, 0);
-                                capture.SetProperty(CaptureProperty.Saturation, (double)FramesPerSecond);
 
-                                capture.SetProperty(CaptureProperty.Hue, LEDBrightness);
                                 capture.SetProperty(CaptureProperty.Gain, SensorGain);
                                 capture.SetProperty(CaptureProperty.Brightness, Exposure);
                                 while (!cancellationToken.IsCancellationRequested)
                                 {
                                     // Runtime settable properties
-                                    if (LEDBrightness != lastLEDBrightness)
-                                    {
-                                        capture.SetProperty(CaptureProperty.Hue, LEDBrightness);
-                                        lastLEDBrightness = LEDBrightness;
-                                    }
                                     if (SensorGain != lastSensorGain)
                                     {
                                         capture.SetProperty(CaptureProperty.Gain, SensorGain);
