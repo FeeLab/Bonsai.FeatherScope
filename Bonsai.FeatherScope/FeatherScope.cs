@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Drawing.Design;
 
-namespace Bonsai.Miniscope
+namespace Bonsai.FeatherScope
 {
     // Attribute metadata. Description attributes specify strings that will be included as
     // documentation in the editor
