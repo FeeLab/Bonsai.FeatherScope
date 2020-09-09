@@ -152,12 +152,12 @@ namespace Bonsai.Miniscope
             get { return captureProperties; }
         }
 #endif
-        [Range(1, 2)]
+        [Range(1, 3)]
         [Editor(DesignTypes.SliderEditor, typeof(UITypeEditor))]
-        [Description("The sensor gain.")]
-        public double SensorGain { get; set; } = 2;
-        
-        private double lastSensorGain;
+        [Description("The sensor gain, 2 has best SNR, 3 is actually 3.5x.")]
+        public int SensorGain { get; set; } = 2;
+
+        private int lastSensorGain;
 
         // Since we have defined our observable source in the constructor (because we are sharing it), here we
         // just need to return that source.
