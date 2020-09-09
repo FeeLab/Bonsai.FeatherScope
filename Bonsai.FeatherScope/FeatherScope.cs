@@ -12,7 +12,7 @@ namespace Bonsai.FeatherScope
     // Attribute metadata. Description attributes specify strings that will be included as
     // documentation in the editor
     [Description("Produces a video sequence of images acquired from a UCLA Miniscope.")]
-    public class UCLAMiniscope : Source<IplImage>
+    public class FeatherScope : Source<IplImage>
     {
         // Only one exclusive connection can be made to a hardware camera object. However, many
         // observers may want to connect to the camera. Because of this, the strategy for the
@@ -34,7 +34,7 @@ namespace Bonsai.FeatherScope
 #endif
 
         // Functor
-        public UCLAMiniscope()
+        public FeatherScope()
         {
 #if !ALL_UVC_PROPERTIES
             lastSensorGain = SensorGain;

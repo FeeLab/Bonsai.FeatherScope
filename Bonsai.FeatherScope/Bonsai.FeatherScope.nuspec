@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <license type="expression">MIT</license>
+    <licenseUrl>https://github.com/feelab/Bonsai.FeatherScope/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/feelab/Bonsai.FeatherScope</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
