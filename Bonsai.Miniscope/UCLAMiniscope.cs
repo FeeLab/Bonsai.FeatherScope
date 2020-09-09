@@ -103,7 +103,7 @@ namespace Bonsai.Miniscope
                                         // If the next image is null, the camera was somehow stopped,
                                         // so we signal the observer that the sequence has ended.
                                         // This mostly never happens, but just to be sure.
-                                        observer.OnCompleted();       
+                                        observer.OnCompleted();
                                         break;
                                     }
                                     // Otherwise, send a copy of the image to the observer. The reason we
@@ -119,7 +119,7 @@ namespace Bonsai.Miniscope
 #if ALL_UVC_PROPERTIES
                                 captureProperties.Capture = null;
 #endif
-                                capture.Close(); // necessary? Not in Goncalo's example     
+                                capture.Close(); // necessary? Not in Goncalo's example
                             }
 
                         }
