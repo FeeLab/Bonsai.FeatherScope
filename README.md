@@ -1,4 +1,4 @@
-# Bonsai.Miniscope
+# Bonsai.FeatherScope
 [Bonsai](http://bonsai-rx.org/) package for controlling and acquiring data from the FeatherScope.
 
 ## Upstream
